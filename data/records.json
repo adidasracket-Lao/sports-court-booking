@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-04-29T23:23:19.300136+08:00",
+  "timezone": "Asia/Macau",
+  "records": [
+    {
+      "id": "IMG_4138",
+      "date": "2026/5/2",
+      "time": "14:00~15:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9528",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4138.JPG",
+      "sourceFile": "IMG_4138.JPG",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4136",
+      "date": "2026/5/2",
+      "time": "15:00~16:00",
+      "court": "羽毛球4號場",
+      "renterCode": "7369",
+      "extraCode": "7481",
+      "image": "uploads/IMG_4136.JPG",
+      "sourceFile": "IMG_4136.JPG",
+      "renterName": "",
+      "extraName": "庭彰"
+    },
+    {
+      "id": "IMG_4137",
+      "date": "2026/5/2",
+      "time": "15:00~16:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4137.JPG",
+      "sourceFile": "IMG_4137.JPG",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4135",
+      "date": "2026/5/2",
+      "time": "16:00~17:00",
+      "court": "羽毛球5號場",
+      "renterCode": "0843",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4135.PNG",
+      "sourceFile": "IMG_4135.PNG",
+      "renterName": "Wing",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4139",
+      "date": "2026/5/2",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4380",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4139.JPG",
+      "sourceFile": "IMG_4139.JPG",
+      "renterName": "",
+      "extraName": "嘉浩"
+    }
+  ],
+  "nameMap": {
+    "4932": "Matthew",
+    "1103": "戴",
+    "843": "Wing",
+    "9761": "康",
+    "7815": "杰瑩",
+    "5167": "黃子聰",
+    "1059": "Ayo",
+    "6185": "杜",
+    "6492": "譚健朗",
+    "6175": "嘉浩",
+    "9963": "林延峰",
+    "7907": "巴士",
+    "9302": "梁丞皓",
+    "8317": "卓謙",
+    "7481": "庭彰",
+    "8983": "綽軒",
+    "1086": "柏熙",
+    "4198": "俊溢"
+  }
+}

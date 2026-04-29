@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>運動場地租用整理</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js" defer></script>
+    <script src="background-sketch.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="p5-background" aria-hidden="true"></div>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">GitHub Pages</p>
+          <h1>運動場地租用整理</h1>
+          <p class="intro">
+            每天自動整理圖片中的訂場資料，集中顯示日期、時段、球場、取場者與額外取場者，並保留原圖下載。
+          </p>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-block">
+            <span>最後更新</span>
+            <strong id="generated-at">讀取中</strong>
+          </div>
+          <div class="meta-block">
+            <span>更新時區</span>
+            <strong>Asia/Macau</strong>
+          </div>
+          <div class="meta-block">
+            <span>排程時間</span>
+            <strong>每日 11:00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary" id="summary"></section>
+
+      <section class="table-band">
+        <div class="table-header">
+          <div>
+            <h2>正式資料</h2>
+            <p>來自 repo 的 <code>uploads/</code> 圖片與對照表。</p>
+          </div>
+          <a class="ghost-link" href="data/records.json">下載 JSON</a>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>時間</th>
+                <th>球場編號</th>
+                <th>取場人</th>
+                <th>額外取場人</th>
+                <th>取場人姓名</th>
+                <th>額外取場人姓名</th>
+                <th>圖片</th>
+              </tr>
+            </thead>
+            <tbody id="records-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="圖片檢視">
+      <button id="lightbox-close" aria-label="關閉">×</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+  </body>
+</html>
