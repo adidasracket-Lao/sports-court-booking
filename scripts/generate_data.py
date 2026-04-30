@@ -27,6 +27,7 @@ class ManualRow:
     extra_code: str
     renter_name: str
     extra_name: str
+    source: str = ""
 
 
 def normalize_code(value: str) -> str:
@@ -77,6 +78,7 @@ def load_manual_rows() -> List[ManualRow]:
                     extra_code=pad_code(row.get("額外取場者", "")),
                     renter_name=(row.get("租場者(姓名）") or "").strip(),
                     extra_name=(row.get("額外取場者（姓名）") or "").strip(),
+                    source=(row.get("source") or row.get("圖片") or "").strip(),
                 )
             )
     return rows
@@ -185,6 +187,12 @@ def extract_codes(text: str) -> List[str]:
 
 
 def match_manual_row(parsed: dict, manual_rows: List[ManualRow]) -> Optional[ManualRow]:
+    source = (parsed.get("sourceFile") or "").strip()
+    if source:
+        for row in manual_rows:
+            if row.source and row.source == source:
+                return row
+
     best_row: Optional[ManualRow] = None
     best_score = -1
 
@@ -259,7 +267,10 @@ def build_records() -> dict:
         )
 
     records = []
-    use_manual_by_order = bool(manual_rows) and len(manual_rows) == len(parsed_images)
+    # Prefer explicit image/source matching. Order-based matching is only safe for
+    # older CSV files that do not contain any source filename.
+    has_manual_sources = any(row.source for row in manual_rows)
+    use_manual_by_order = bool(manual_rows) and not has_manual_sources and len(manual_rows) == len(parsed_images)
     sorted_manual_rows = sorted(manual_rows, key=manual_sort_key)
     sorted_images = sorted(parsed_images, key=record_sort_key)
 
@@ -274,8 +285,10 @@ def build_records() -> dict:
             parsed["date"] = matched.date or parsed["date"]
             parsed["time"] = matched.time or parsed["time"]
             parsed["court"] = matched.court or parsed["court"]
-            parsed["renterCode"] = matched.renter_code or parsed["renterCode"]
-            parsed["extraCode"] = matched.extra_code or parsed["extraCode"]
+            # Manual rows are verified data. For extraCode, an intentionally blank
+            # value must override OCR noise such as dates being mistaken for IDs.
+            parsed["renterCode"] = matched.renter_code
+            parsed["extraCode"] = matched.extra_code
 
         renter_name = name_map.get(normalize_code(parsed["renterCode"]), "")
         extra_name = name_map.get(normalize_code(parsed["extraCode"]), "")
