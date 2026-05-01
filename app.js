@@ -43,6 +43,24 @@ function sortRecords(records) {
   });
 }
 
+function parseRecordEnd(record) {
+  const dateMatch = String(record.date || "").match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+  const endTime = String(record.time || "").split("~")[1] || "";
+  const timeMatch = endTime.match(/^(\d{1,2}):(\d{2})$/);
+  if (!dateMatch || !timeMatch) return null;
+  const [, year, month, day] = dateMatch;
+  const [, hour, minute] = timeMatch;
+  return new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
+}
+
+function filterActiveRecords(records) {
+  const now = new Date();
+  return records.filter((record) => {
+    const end = parseRecordEnd(record);
+    return !end || end >= now;
+  });
+}
+
 function renderSummary(records) {
   const summary = document.querySelector("#summary");
   const dates = new Set(records.map((record) => record.date).filter(Boolean));
@@ -128,7 +146,8 @@ async function bootstrap() {
   try {
     const payload = await loadData();
     document.querySelector("#generated-at").textContent = formatGeneratedAt(payload.generatedAt);
-    const sorted = sortRecords(payload.records);
+    const activeRecords = filterActiveRecords(payload.records);
+    const sorted = sortRecords(activeRecords);
     renderSummary(sorted);
     renderTable("#records-body", sorted);
   } catch (error) {
