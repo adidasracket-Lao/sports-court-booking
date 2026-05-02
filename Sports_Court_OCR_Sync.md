@@ -157,3 +157,18 @@ Done.
 - Only merge or correct records.
 - Keep source screenshots in `uploads/`.
 - Keep verified CSV rows with `source` filename.
+
+
+## Telegram 自動處理設定
+
+當使用者透過 Telegram 上傳澳門體育局 booking.sport.gov.mo 的二維碼 / 收據截圖，並要求更新運動場地網站時，預設自動處理整批圖片：
+
+1. 偵測所有新上傳的相關圖片，不只處理第一張。
+2. 全部存入 `uploads/`，使用下一個 `IMG_####.jpg` 檔名。
+3. 讀取日期、時段、場區編號、租場者後四碼、額外取場者後四碼及姓名。
+4. 更新 `場地租用資料.csv`，並以 `source` 對應圖片。
+5. 執行 `python3 scripts/generate_data.py` 更新 `data/records.json`。
+6. 網站前台隱藏過期場地；原始 CSV / JSON / 圖片保留。
+7. commit、push、等待 GitHub Pages 部署完成，驗證後回傳網址。
+
+只有在圖片讀不到、資料矛盾、重複判斷不清或部署失敗時，才需要先問使用者。
