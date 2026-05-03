@@ -87,6 +87,12 @@ function renderSummary(records) {
 }
 
 function rowTemplate(record, imageUrl) {
+  const imageCell = imageUrl
+    ? `<button class="thumb-btn" onclick="openLightbox('${escapeHtml(imageUrl)}', '${escapeHtml(record.date + " " + record.court)}')" aria-label="查看圖片">
+          <img class="thumb-img" src="${escapeHtml(imageUrl)}" alt="${escapeHtml(record.date + " " + record.court)}" loading="lazy" />
+        </button>`
+    : `<span class="image-pruned">已清理</span>`;
+
   return `
     <tr>
       <td>${escapeHtml(record.date)}</td>
@@ -96,11 +102,7 @@ function rowTemplate(record, imageUrl) {
       <td>${escapeHtml(record.extraCode)}</td>
       <td>${escapeHtml(record.renterName)}</td>
       <td>${escapeHtml(record.extraName)}</td>
-      <td>
-        <button class="thumb-btn" onclick="openLightbox('${escapeHtml(imageUrl)}', '${escapeHtml(record.date + " " + record.court)}')" aria-label="查看圖片">
-          <img class="thumb-img" src="${escapeHtml(imageUrl)}" alt="${escapeHtml(record.date + " " + record.court)}" loading="lazy" />
-        </button>
-      </td>
+      <td>${imageCell}</td>
     </tr>
   `;
 }

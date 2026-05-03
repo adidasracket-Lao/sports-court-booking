@@ -18,6 +18,7 @@ Every day 11:00 AM Macau Time
   場地租用資料.csv           # manual/verified booking rows
   取場人對照表.csv           # member mapping
   scripts/generate_data.py  # OCR + merge + JSON builder
+  scripts/prune_expired_uploads.py  # delete expired source screenshots to reduce OCR/token waste
   index.html
   app.js
   styles.css
@@ -125,11 +126,14 @@ Manual run:
 
 ```sh
 cd ~/Desktop/運動場地
+python3 scripts/prune_expired_uploads.py --apply
 python3 scripts/generate_data.py
 git add .
 git commit -m "daily sports update"
 git push
 ```
+
+`prune_expired_uploads.py` deletes only screenshots whose booking end time is already past. Verified rows remain in `場地租用資料.csv`; `generate_data.py` preserves those historical records even when the image file has been removed.
 
 GitHub Actions will deploy GitHub Pages after push.
 
@@ -153,10 +157,11 @@ Done.
 
 ## Safety
 
-- Never delete historical records or uploaded images.
-- Only merge or correct records.
-- Keep source screenshots in `uploads/`.
 - Keep verified CSV rows with `source` filename.
+- Historical records may remain in CSV/JSON after their screenshots are deleted.
+- It is OK to delete expired source screenshots from `uploads/` after their booking end time has passed, to reduce future OCR/token waste.
+- Never delete future/active booking screenshots unless the user explicitly asks.
+- Only merge or correct records.
 
 
 ## Telegram 自動處理設定
@@ -167,8 +172,9 @@ Done.
 2. 全部存入 `uploads/`，使用下一個 `IMG_####.jpg` 檔名。
 3. 讀取日期、時段、場區編號、租場者後四碼、額外取場者後四碼及姓名。
 4. 更新 `場地租用資料.csv`，並以 `source` 對應圖片。
-5. 執行 `python3 scripts/generate_data.py` 更新 `data/records.json`。
-6. 網站前台隱藏過期場地；原始 CSV / JSON / 圖片保留。
-7. commit、push、等待 GitHub Pages 部署完成，驗證後回傳網址。
+5. 先執行 `python3 scripts/prune_expired_uploads.py --apply`，刪除已過期的 `uploads/` 圖片，避免之後重複 OCR 浪費 token。
+6. 執行 `python3 scripts/generate_data.py` 更新 `data/records.json`。
+7. 網站前台隱藏過期場地；原始 CSV / JSON 保留，過期圖片可刪除。
+8. commit、push、等待 GitHub Pages 部署完成，驗證後回傳網址。
 
 只有在圖片讀不到、資料矛盾、重複判斷不清或部署失敗時，才需要先問使用者。

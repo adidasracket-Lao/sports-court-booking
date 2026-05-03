@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T07:41:53.074157+08:00",
+  "generatedAt": "2026-05-03T20:32:51.103039+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -9,7 +9,7 @@
       "court": "羽毛球5號場",
       "renterCode": "9709",
       "extraCode": "4198",
-      "image": "uploads/IMG_4145.jpg",
+      "image": "",
       "sourceFile": "IMG_4145.jpg",
       "renterName": "",
       "extraName": "俊溢"
@@ -21,7 +21,7 @@
       "court": "羽毛球6號場",
       "renterCode": "4380",
       "extraCode": "0843",
-      "image": "uploads/IMG_4148.jpg",
+      "image": "",
       "sourceFile": "IMG_4148.jpg",
       "renterName": "",
       "extraName": "Wing"
@@ -33,7 +33,7 @@
       "court": "羽毛球7號場",
       "renterCode": "7437",
       "extraCode": "7481",
-      "image": "uploads/IMG_4149.jpg",
+      "image": "",
       "sourceFile": "IMG_4149.jpg",
       "renterName": "",
       "extraName": "庭彰"
@@ -45,7 +45,7 @@
       "court": "羽毛球4號場",
       "renterCode": "7369",
       "extraCode": "0843",
-      "image": "uploads/IMG_4146.jpg",
+      "image": "",
       "sourceFile": "IMG_4146.jpg",
       "renterName": "",
       "extraName": "Wing"
@@ -57,7 +57,7 @@
       "court": "羽毛球5號場",
       "renterCode": "9528",
       "extraCode": "6175",
-      "image": "uploads/IMG_4147.jpg",
+      "image": "",
       "sourceFile": "IMG_4147.jpg",
       "renterName": "",
       "extraName": "嘉浩"
@@ -69,7 +69,7 @@
       "court": "羽毛球5號場",
       "renterCode": "9528",
       "extraCode": "6175",
-      "image": "uploads/IMG_4138.JPG",
+      "image": "",
       "sourceFile": "IMG_4138.JPG",
       "renterName": "",
       "extraName": "嘉浩"
@@ -81,7 +81,7 @@
       "court": "羽毛球4號場",
       "renterCode": "7369",
       "extraCode": "7481",
-      "image": "uploads/IMG_4136.JPG",
+      "image": "",
       "sourceFile": "IMG_4136.JPG",
       "renterName": "",
       "extraName": "庭彰"
@@ -93,7 +93,7 @@
       "court": "羽毛球5號場",
       "renterCode": "9709",
       "extraCode": "6175",
-      "image": "uploads/IMG_4137.JPG",
+      "image": "",
       "sourceFile": "IMG_4137.JPG",
       "renterName": "",
       "extraName": "嘉浩"
@@ -105,7 +105,7 @@
       "court": "羽毛球5號場",
       "renterCode": "0843",
       "extraCode": "6175",
-      "image": "uploads/IMG_4135.PNG",
+      "image": "",
       "sourceFile": "IMG_4135.PNG",
       "renterName": "Wing",
       "extraName": "嘉浩"
@@ -117,7 +117,7 @@
       "court": "羽毛球5號場",
       "renterCode": "4380",
       "extraCode": "6175",
-      "image": "uploads/IMG_4139.JPG",
+      "image": "",
       "sourceFile": "IMG_4139.JPG",
       "renterName": "",
       "extraName": "嘉浩"
@@ -129,7 +129,7 @@
       "court": "羽毛球場C",
       "renterCode": "9709",
       "extraCode": "7481",
-      "image": "uploads/IMG_4144.jpg",
+      "image": "",
       "sourceFile": "IMG_4144.jpg",
       "renterName": "",
       "extraName": "庭彰"
@@ -141,7 +141,7 @@
       "court": "羽毛球場D",
       "renterCode": "0843",
       "extraCode": "",
-      "image": "uploads/IMG_4143.jpg",
+      "image": "",
       "sourceFile": "IMG_4143.jpg",
       "renterName": "Wing",
       "extraName": ""
@@ -153,7 +153,7 @@
       "court": "羽毛球場A",
       "renterCode": "4380",
       "extraCode": "0843",
-      "image": "uploads/IMG_4142.jpg",
+      "image": "",
       "sourceFile": "IMG_4142.jpg",
       "renterName": "",
       "extraName": "Wing"
@@ -165,7 +165,7 @@
       "court": "羽毛球場C",
       "renterCode": "9528",
       "extraCode": "7481",
-      "image": "uploads/IMG_4141.jpg",
+      "image": "",
       "sourceFile": "IMG_4141.jpg",
       "renterName": "",
       "extraName": "庭彰"
@@ -177,7 +177,7 @@
       "court": "羽毛球場D",
       "renterCode": "7369",
       "extraCode": "6492",
-      "image": "uploads/IMG_4140.jpg",
+      "image": "",
       "sourceFile": "IMG_4140.jpg",
       "renterName": "",
       "extraName": "譚健朗"

@@ -233,6 +233,21 @@ def record_sort_key(record: dict) -> tuple:
         return (datetime.max, record.get("court", ""), record.get("sourceFile", ""))
 
 
+def manual_row_to_record(row: ManualRow) -> dict:
+    """Preserve verified CSV records even after expired source images are pruned."""
+    image_path = UPLOAD_DIR / row.source if row.source else None
+    return {
+        "id": Path(row.source).stem if row.source else f"manual-{row.date}-{row.time}-{row.court}",
+        "date": row.date,
+        "time": row.time,
+        "court": row.court,
+        "renterCode": row.renter_code,
+        "extraCode": row.extra_code,
+        "image": f"uploads/{row.source}" if image_path and image_path.exists() else "",
+        "sourceFile": row.source,
+    }
+
+
 def build_records() -> dict:
     name_map = load_name_map()
     manual_rows = load_manual_rows()
@@ -299,6 +314,16 @@ def build_records() -> dict:
         parsed["renterName"] = renter_name
         parsed["extraName"] = extra_name
         records.append(parsed)
+
+    existing_sources = {record.get("sourceFile", "") for record in records if record.get("sourceFile")}
+    if has_manual_sources:
+        for row in manual_rows:
+            if row.source and row.source not in existing_sources:
+                parsed = manual_row_to_record(row)
+                parsed["renterName"] = name_map.get(normalize_code(parsed["renterCode"]), "") or row.renter_name
+                parsed["extraName"] = name_map.get(normalize_code(parsed["extraCode"]), "") or row.extra_name
+                records.append(parsed)
+                existing_sources.add(row.source)
 
     records.sort(key=record_sort_key)
     return {
