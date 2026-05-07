@@ -31,15 +31,29 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function parseRecordStart(record) {
+  const dateMatch = String(record.date || "").match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+  const startTime = String(record.time || "").split("~")[0] || "";
+  const timeMatch = startTime.match(/^(\d{1,2}):(\d{2})$/);
+  if (!dateMatch || !timeMatch) return null;
+  const [, year, month, day] = dateMatch;
+  const [, hour, minute] = timeMatch;
+  return new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
+}
+
 function sortRecords(records) {
   return [...records].sort((a, b) => {
-    if (a.date !== b.date) return a.date < b.date ? -1 : 1;
-    const aTime = (a.time || "").split("~")[0];
-    const bTime = (b.time || "").split("~")[0];
-    if (aTime !== bTime) return aTime < bTime ? -1 : 1;
+    const aStart = parseRecordStart(a);
+    const bStart = parseRecordStart(b);
+    if (aStart && bStart && aStart.getTime() !== bStart.getTime()) {
+      return aStart - bStart;
+    }
+    if (aStart && !bStart) return -1;
+    if (!aStart && bStart) return 1;
     const aCourt = a.court || "";
     const bCourt = b.court || "";
-    return aCourt < bCourt ? -1 : aCourt > bCourt ? 1 : 0;
+    if (aCourt !== bCourt) return aCourt < bCourt ? -1 : 1;
+    return (a.sourceFile || "") < (b.sourceFile || "") ? -1 : (a.sourceFile || "") > (b.sourceFile || "") ? 1 : 0;
   });
 }
 
