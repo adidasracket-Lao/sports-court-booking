@@ -2,7 +2,7 @@
 """Delete expired booking screenshots from uploads/ while keeping CSV/JSON records."""
 import argparse
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -35,7 +35,7 @@ def load_expired_sources(now: datetime):
         for row in reader:
             source = (row.get("source") or row.get("圖片") or "").strip()
             end_dt = parse_end_datetime(row.get("使用時間", ""))
-            if source and end_dt and end_dt < now:
+            if source and end_dt and end_dt < now - timedelta(hours=5):
                 expired.append((source, end_dt, row.get("使用時間", ""), row.get("場地編號", "")))
     return expired
 

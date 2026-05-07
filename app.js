@@ -55,9 +55,10 @@ function parseRecordEnd(record) {
 
 function filterActiveRecords(records) {
   const now = new Date();
+  const hideDelayMs = 5 * 60 * 60 * 1000; // 結束後 5 小時才隱藏
   return records.filter((record) => {
     const end = parseRecordEnd(record);
-    return !end || end >= now;
+    return !end || now < new Date(end.getTime() + hideDelayMs);
   });
 }
 
