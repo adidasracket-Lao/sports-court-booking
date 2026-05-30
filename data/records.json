@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T16:17:43.578085+08:00",
+  "generatedAt": "2026-05-30T17:47:38.948829+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -747,6 +747,42 @@
       "extraName": ""
     },
     {
+      "id": "IMG_4260",
+      "date": "2026/6/2",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "6492",
+      "image": "uploads/IMG_4260.jpg",
+      "sourceFile": "IMG_4260.jpg",
+      "renterName": "",
+      "extraName": "譚健朗"
+    },
+    {
+      "id": "IMG_4261",
+      "date": "2026/6/2",
+      "time": "17:00~18:00",
+      "court": "羽毛球6號場",
+      "renterCode": "4380",
+      "extraCode": "0843",
+      "image": "uploads/IMG_4261.jpg",
+      "sourceFile": "IMG_4261.jpg",
+      "renterName": "",
+      "extraName": "Wing"
+    },
+    {
+      "id": "IMG_4262",
+      "date": "2026/6/2",
+      "time": "17:00~18:00",
+      "court": "羽毛球7號場",
+      "renterCode": "7437",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4262.jpg",
+      "sourceFile": "IMG_4262.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
       "id": "IMG_4258",
       "date": "2026/6/2",
       "time": "18:00~19:00",
@@ -757,6 +793,30 @@
       "sourceFile": "IMG_4258.jpg",
       "renterName": "Wing",
       "extraName": ""
+    },
+    {
+      "id": "IMG_4263",
+      "date": "2026/6/2",
+      "time": "18:00~19:00",
+      "court": "羽毛球7號場",
+      "renterCode": "9761",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4263.jpg",
+      "sourceFile": "IMG_4263.jpg",
+      "renterName": "康",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4264",
+      "date": "2026/6/2",
+      "time": "18:00~19:00",
+      "court": "羽毛球7號場",
+      "renterCode": "9528",
+      "extraCode": "6492",
+      "image": "uploads/IMG_4264.jpg",
+      "sourceFile": "IMG_4264.jpg",
+      "renterName": "",
+      "extraName": "譚健朗"
     },
     {
       "id": "IMG_4259",
