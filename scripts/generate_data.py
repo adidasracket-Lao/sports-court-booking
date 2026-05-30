@@ -325,7 +325,28 @@ def build_records() -> dict:
                 records.append(parsed)
                 existing_sources.add(row.source)
 
-    records.sort(key=record_sort_key)
+    manual_sources = {row.source for row in manual_rows if row.source}
+
+    def booking_key(record: dict) -> tuple:
+        return (
+            record.get("date", "").strip(),
+            record.get("time", "").strip(),
+            record.get("court", "").strip(),
+            record.get("renterCode", "").strip(),
+            record.get("extraCode", "").strip(),
+        )
+
+    def record_priority(record: dict) -> tuple:
+        # Prefer verified CSV/manual rows over OCR-only rows when the booking key matches.
+        return (0 if record.get("sourceFile", "") in manual_sources else 1, record_sort_key(record))
+
+    deduped: dict[tuple, dict] = {}
+    for record in sorted(records, key=record_priority):
+        key = booking_key(record)
+        if key not in deduped:
+            deduped[key] = record
+
+    records = sorted(deduped.values(), key=record_sort_key)
     return {
         "generatedAt": datetime.now().astimezone().isoformat(),
         "timezone": TIMEZONE,
