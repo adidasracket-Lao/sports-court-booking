@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T08:27:53.042367+08:00",
+  "generatedAt": "2026-06-04T15:51:51.639357+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -925,6 +925,78 @@
       "sourceFile": "IMG_4272.jpg",
       "renterName": "",
       "extraName": ""
+    },
+    {
+      "id": "IMG_4275",
+      "date": "2026/6/5",
+      "time": "20:00~21:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4275.jpg",
+      "sourceFile": "IMG_4275.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4276",
+      "date": "2026/6/6",
+      "time": "14:00~15:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9528",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4276.jpg",
+      "sourceFile": "IMG_4276.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4277",
+      "date": "2026/6/6",
+      "time": "15:00~16:00",
+      "court": "羽毛球4號場",
+      "renterCode": "7369",
+      "extraCode": "7481",
+      "image": "uploads/IMG_4277.jpg",
+      "sourceFile": "IMG_4277.jpg",
+      "renterName": "",
+      "extraName": "庭彰"
+    },
+    {
+      "id": "IMG_4278",
+      "date": "2026/6/6",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4380",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4278.jpg",
+      "sourceFile": "IMG_4278.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4274",
+      "date": "2026/6/7",
+      "time": "08:00~09:00",
+      "court": "羽毛球11號場",
+      "renterCode": "9709",
+      "extraCode": "6492",
+      "image": "uploads/IMG_4274.jpg",
+      "sourceFile": "IMG_4274.jpg",
+      "renterName": "",
+      "extraName": "譚健朗"
+    },
+    {
+      "id": "IMG_4273",
+      "date": "2026/6/7",
+      "time": "09:00~10:00",
+      "court": "羽毛球10號場",
+      "renterCode": "0843",
+      "extraCode": "9761",
+      "image": "uploads/IMG_4273.jpg",
+      "sourceFile": "IMG_4273.jpg",
+      "renterName": "Wing",
+      "extraName": "康"
     }
   ],
   "nameMap": {
