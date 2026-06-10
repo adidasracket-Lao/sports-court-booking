@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T08:30:25.092209+08:00",
+  "generatedAt": "2026-06-10T19:42:37.942378+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -1249,6 +1249,18 @@
       "sourceFile": "IMG_4302.jpg",
       "renterName": "",
       "extraName": "庭彰"
+    },
+    {
+      "id": "IMG_4318",
+      "date": "2026/6/10",
+      "time": "20:00~21:00",
+      "court": "羽毛球3號場",
+      "renterCode": "7836",
+      "extraCode": "9761",
+      "image": "uploads/IMG_4318.jpg",
+      "sourceFile": "IMG_4318.jpg",
+      "renterName": "",
+      "extraName": "康"
     },
     {
       "id": "IMG_4296",
