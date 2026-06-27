@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T08:45:06.075882+08:00",
+  "generatedAt": "2026-06-27T08:13:06.092299+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -2113,6 +2113,126 @@
       "sourceFile": "IMG_4371.jpg",
       "renterName": "",
       "extraName": "Ayo"
+    },
+    {
+      "id": "IMG_4373",
+      "date": "2026/6/30",
+      "time": "17:00~18:00",
+      "court": "羽毛球11號場",
+      "renterCode": "7836",
+      "extraCode": "1086",
+      "image": "uploads/IMG_4373.jpg",
+      "sourceFile": "IMG_4373.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
+      "id": "IMG_4372",
+      "date": "2026/6/30",
+      "time": "17:00~18:00",
+      "court": "羽毛球8號場",
+      "renterCode": "9528",
+      "extraCode": "7481",
+      "image": "uploads/IMG_4372.jpg",
+      "sourceFile": "IMG_4372.jpg",
+      "renterName": "",
+      "extraName": "庭彰"
+    },
+    {
+      "id": "IMG_4374",
+      "date": "2026/6/30",
+      "time": "18:00~19:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "8317",
+      "image": "uploads/IMG_4374.jpg",
+      "sourceFile": "IMG_4374.jpg",
+      "renterName": "",
+      "extraName": "卓謙"
+    },
+    {
+      "id": "IMG_4375",
+      "date": "2026/6/30",
+      "time": "18:00~19:00",
+      "court": "羽毛球8號場",
+      "renterCode": "5949",
+      "extraCode": "1086",
+      "image": "uploads/IMG_4375.jpg",
+      "sourceFile": "IMG_4375.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
+      "id": "IMG_4376",
+      "date": "2026/6/30",
+      "time": "18:00~19:00",
+      "court": "羽毛球8號場",
+      "renterCode": "7437",
+      "extraCode": "9963",
+      "image": "uploads/IMG_4376.jpg",
+      "sourceFile": "IMG_4376.jpg",
+      "renterName": "",
+      "extraName": "林延峰"
+    },
+    {
+      "id": "IMG_4377",
+      "date": "2026/6/30",
+      "time": "19:00~20:00",
+      "court": "羽毛球7號場",
+      "renterCode": "7369",
+      "extraCode": "8317",
+      "image": "uploads/IMG_4377.jpg",
+      "sourceFile": "IMG_4377.jpg",
+      "renterName": "",
+      "extraName": "卓謙"
+    },
+    {
+      "id": "IMG_4378",
+      "date": "2026/6/30",
+      "time": "19:00~20:00",
+      "court": "羽毛球7號場",
+      "renterCode": "0843",
+      "extraCode": "6175",
+      "image": "uploads/IMG_4378.jpg",
+      "sourceFile": "IMG_4378.jpg",
+      "renterName": "Wing",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4381",
+      "date": "2026/6/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球11號場",
+      "renterCode": "4446",
+      "extraCode": "1086",
+      "image": "uploads/IMG_4381.jpg",
+      "sourceFile": "IMG_4381.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
+      "id": "IMG_4379",
+      "date": "2026/6/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球8號場",
+      "renterCode": "4380",
+      "extraCode": "0843",
+      "image": "uploads/IMG_4379.jpg",
+      "sourceFile": "IMG_4379.jpg",
+      "renterName": "",
+      "extraName": "Wing"
+    },
+    {
+      "id": "IMG_4380",
+      "date": "2026/6/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球8號場",
+      "renterCode": "9761",
+      "extraCode": "7481",
+      "image": "uploads/IMG_4380.jpg",
+      "sourceFile": "IMG_4380.jpg",
+      "renterName": "康",
+      "extraName": "庭彰"
     }
   ],
   "nameMap": {
