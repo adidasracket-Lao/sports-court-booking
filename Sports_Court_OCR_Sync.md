@@ -38,6 +38,39 @@ Extract fields:
 | 租場者 | renter_id |
 | 額外取場者 | extra_id |
 
+### Image-first data rule
+
+The image is the source of truth for booking facts. When the website table
+shows text fields on the left and the original image on the right, the text
+must match the information visible in the image.
+
+Use OCR/image text first for these fields whenever the value is confidently
+readable:
+
+```text
+日期
+時間
+球場編號
+取場人
+額外取場人
+取場人姓名
+額外取場人姓名
+```
+
+If OCR cannot confidently read a field, use the row pinned by the image filename
+(`source` / `圖片`) as the fallback. Never let an order-based match override a
+field that is clearly readable from the image.
+
+For renter codes, accept only confident masked-code patterns such as:
+
+```text
+****1234
+####1234
+```
+
+Do not treat general 3-4 digit numbers as renter codes. In particular, never use
+dates or years such as `2026` as `取場人` or `額外取場人`.
+
 ## Normalize
 
 Date:
@@ -92,14 +125,26 @@ Unique key:
 date + time + court
 ```
 
+Do not include renter code or extra renter code in the display duplicate key.
+If multiple records resolve to the same `date + time + court`, show only one on
+the website. This prevents repeated display of the same booking/image
+information even when renter-code OCR or manual rows differ.
+
 Latest verified record wins. Never delete historical source images.
+
+The image filename must still remain unique: one displayed row should point to
+one source image, and the same image file must not be displayed multiple times.
 
 ## CSV Schema
 
-Current CSV schema:
+Supported CSV schemas:
 
 ```csv
 使用時間,場地編號,租場者,額外取場者,租場者(姓名）,額外取場者（姓名）,source
+```
+
+```csv
+日期,時間,球場編號,取場人,額外取場人,取場人姓名,額外取場人姓名,圖片
 ```
 
 Example:
@@ -108,7 +153,19 @@ Example:
 2026/4/30 17:00~18:00,羽毛球5號場,9709,4198,,俊溢,IMG_4145.jpg
 ```
 
-`source` is important: it pins a manual verified row to the exact image file, avoiding wrong order-based matching.
+`source` / `圖片` is important: it pins a verified row to the exact image file,
+avoiding wrong order-based matching. When a mismatch is found, correct the CSV
+row so the left-side text matches the right-side image.
+
+### Mismatch correction rule
+
+When a row's text data and the source image disagree:
+
+1. Trust the source image.
+2. Correct the CSV row directly to match the image.
+3. Regenerate `data/records.json`.
+4. Verify there are no duplicate `sourceFile` values and no duplicate
+   `date + time + court` display keys.
 
 ## Website JSON
 
@@ -155,6 +212,22 @@ Concise report format:
 Done.
 ```
 
+Data integrity checks:
+
+```sh
+python3 scripts/generate_data.py
+python3 - <<'PY'
+import collections, json
+records = json.load(open("data/records.json", encoding="utf-8"))["records"]
+sources = collections.Counter(r.get("sourceFile") for r in records if r.get("sourceFile"))
+keys = collections.Counter((r.get("date"), r.get("time"), r.get("court")) for r in records)
+print("duplicate sources:", [item for item in sources.items() if item[1] > 1])
+print("duplicate date/time/court:", [item for item in keys.items() if item[1] > 1])
+PY
+```
+
+Both duplicate lists should be empty before upload/publish.
+
 ## Safety
 
 - Keep verified CSV rows with `source` filename.
@@ -170,11 +243,12 @@ Done.
 
 1. 偵測所有新上傳的相關圖片，不只處理第一張。
 2. 全部存入 `uploads/`，使用下一個 `IMG_####.jpg` 檔名。
-3. 讀取日期、時段、場區編號、租場者後四碼、額外取場者後四碼及姓名。
-4. 更新 `場地租用資料.csv`，並以 `source` 對應圖片。
+3. 讀取日期、時段、場區編號、租場者後四碼、額外取場者後四碼及姓名；圖片 OCR 有可信資料時必須優先使用。
+4. 更新 `場地租用資料.csv`，並以 `source` / `圖片` 對應圖片；左邊文字資料必須和右邊圖片一致。
 5. 先執行 `python3 scripts/prune_expired_uploads.py --apply`，刪除已過期的 `uploads/` 圖片，避免之後重複 OCR 浪費 token。
 6. 執行 `python3 scripts/generate_data.py` 更新 `data/records.json`。
-7. 網站前台隱藏過期場地；原始 CSV / JSON 保留，過期圖片可刪除。
-8. commit、push、等待 GitHub Pages 部署完成，驗證後回傳網址。
+7. 檢查不可有重複 `sourceFile`，也不可有重複 `日期 + 時間 + 球場` 顯示資料。
+8. 網站前台隱藏過期場地；原始 CSV / JSON 保留，過期圖片可刪除。
+9. commit、push、等待 GitHub Pages 部署完成，驗證後回傳網址。
 
 只有在圖片讀不到、資料矛盾、重複判斷不清或部署失敗時，才需要先問使用者。
