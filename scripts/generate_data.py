@@ -67,17 +67,21 @@ def load_manual_rows() -> List[ManualRow]:
     with MANUAL_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         for row in reader:
+            combined_time = (row.get("使用時間") or "").strip()
+            if not combined_time and (row.get("日期") or row.get("時間")):
+                combined_time = f'{(row.get("日期") or "").strip()} {(row.get("時間") or "").strip()}'.strip()
+
             rows.append(
                 ManualRow(
-                    date=(row.get("使用時間", "").split(" ", 1)[0]).strip(),
-                    time=(row.get("使用時間", "").split(" ", 1)[1]).strip()
-                    if " " in row.get("使用時間", "")
+                    date=(combined_time.split(" ", 1)[0]).strip(),
+                    time=(combined_time.split(" ", 1)[1]).strip()
+                    if " " in combined_time
                     else "",
-                    court=(row.get("場地編號") or "").strip(),
-                    renter_code=pad_code(row.get("租場者", "")),
-                    extra_code=pad_code(row.get("額外取場者", "")),
-                    renter_name=(row.get("租場者(姓名）") or "").strip(),
-                    extra_name=(row.get("額外取場者（姓名）") or "").strip(),
+                    court=(row.get("場地編號") or row.get("球場編號") or "").strip(),
+                    renter_code=pad_code(row.get("租場者") or row.get("取場人") or ""),
+                    extra_code=pad_code(row.get("額外取場者") or row.get("額外取場人") or ""),
+                    renter_name=(row.get("租場者(姓名）") or row.get("取場人姓名") or "").strip(),
+                    extra_name=(row.get("額外取場者（姓名）") or row.get("額外取場人姓名") or "").strip(),
                     source=(row.get("source") or row.get("圖片") or "").strip(),
                 )
             )
@@ -130,7 +134,7 @@ def extract_date(text: str) -> str:
 
 
 def extract_time(text: str) -> str:
-    match = re.search(r"(\d{1,2}:\d{2})\s*[~\-]\s*(\d{1,2}:\d{2})", text)
+    match = re.search(r"(\d{1,2}:\d{2})\s*[~\-～]\s*(\d{1,2}:\d{2})", text)
     if not match:
         return ""
     return f"{match.group(1)}~{match.group(2)}"
@@ -138,15 +142,20 @@ def extract_time(text: str) -> str:
 
 def extract_court(text: str) -> str:
     patterns = [
+        r"場區編號[:：]?\s*羽毛球\s*([0-9]+)\s*號場",
         r"羽毛球\s*([0-9]+)\s*號場",
         r"球場\s*([0-9]+)\s*號場",
-        r"場區編號[:：]?\s*羽毛球\s*([0-9]+)\s*號場",
         r"羽毛球([0-9]+)號場",
+        r"場區編號[:：]?\s*羽毛球場\s*([A-Z])",
+        r"羽毛球場\s*([A-Z])",
     ]
     for pattern in patterns:
         match = re.search(pattern, text)
         if match:
-            return f"羽毛球{match.group(1)}號場"
+            value = match.group(1)
+            if value.isdigit():
+                return f"羽毛球{value}號場"
+            return f"羽毛球場{value}"
 
     for line in text.splitlines():
         if "號場" in line or "场" in line or "場" in line:
@@ -176,13 +185,6 @@ def extract_codes(text: str) -> List[str]:
         if len(found) == 2:
             return found
 
-    trailing = re.findall(r"\b(\d{3,4})\b", text)
-    for code in trailing:
-        padded = pad_code(code)
-        if padded not in found:
-            found.append(padded)
-        if len(found) == 2:
-            return found
     return found[:2]
 
 
@@ -253,11 +255,13 @@ def build_records() -> dict:
     manual_rows = load_manual_rows()
     languages = available_tesseract_languages()
     parsed_images = []
+    image_paths = [
+        image_path
+        for image_path in sorted(UPLOAD_DIR.iterdir())
+        if image_path.suffix.lower() in IMAGE_EXTENSIONS and image_path.is_file()
+    ]
 
-    for image_path in sorted(UPLOAD_DIR.iterdir()):
-        if image_path.suffix.lower() not in IMAGE_EXTENSIONS or not image_path.is_file():
-            continue
-
+    for image_path in image_paths:
         text = ocr_image(image_path, languages)
         codes = extract_codes(text)
         parsed = {
@@ -266,6 +270,7 @@ def build_records() -> dict:
             "court": extract_court(text),
             "renter_code": codes[0] if len(codes) > 0 else "",
             "extra_code": codes[1] if len(codes) > 1 else "",
+            "codes_confident": len(codes) >= 2,
         }
 
         parsed_images.append(
@@ -276,6 +281,7 @@ def build_records() -> dict:
                 "court": parsed["court"],
                 "renterCode": parsed["renter_code"],
                 "extraCode": parsed["extra_code"],
+                "codesConfident": parsed["codes_confident"],
                 "image": f"uploads/{image_path.name}",
                 "sourceFile": image_path.name,
             }
@@ -297,13 +303,17 @@ def build_records() -> dict:
             matched = match_manual_row(parsed, manual_rows)
 
         if matched:
-            parsed["date"] = matched.date or parsed["date"]
-            parsed["time"] = matched.time or parsed["time"]
-            parsed["court"] = matched.court or parsed["court"]
-            # Manual rows are verified data. For extraCode, an intentionally blank
-            # value must override OCR noise such as dates being mistaken for IDs.
-            parsed["renterCode"] = matched.renter_code
-            parsed["extraCode"] = matched.extra_code
+            parsed["date"] = parsed["date"] or matched.date
+            parsed["time"] = parsed["time"] or matched.time
+            parsed["court"] = parsed["court"] or matched.court
+            if not parsed.pop("codesConfident", False):
+                parsed["renterCode"] = matched.renter_code
+                parsed["extraCode"] = matched.extra_code
+            else:
+                parsed["renterCode"] = parsed["renterCode"] or matched.renter_code
+                parsed["extraCode"] = parsed["extraCode"] or matched.extra_code
+        else:
+            parsed.pop("codesConfident", None)
 
         renter_name = name_map.get(normalize_code(parsed["renterCode"]), "")
         extra_name = name_map.get(normalize_code(parsed["extraCode"]), "")
@@ -332,8 +342,6 @@ def build_records() -> dict:
             record.get("date", "").strip(),
             record.get("time", "").strip(),
             record.get("court", "").strip(),
-            record.get("renterCode", "").strip(),
-            record.get("extraCode", "").strip(),
         )
 
     def record_priority(record: dict) -> tuple:
