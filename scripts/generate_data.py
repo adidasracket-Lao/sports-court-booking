@@ -303,15 +303,24 @@ def build_records() -> dict:
             matched = match_manual_row(parsed, manual_rows)
 
         if matched:
-            parsed["date"] = parsed["date"] or matched.date
-            parsed["time"] = parsed["time"] or matched.time
-            parsed["court"] = parsed["court"] or matched.court
-            if not parsed.pop("codesConfident", False):
-                parsed["renterCode"] = matched.renter_code
-                parsed["extraCode"] = matched.extra_code
+            source = parsed.get("sourceFile", "")
+            source_matched = bool(source and matched.source and matched.source == source)
+            if source_matched:
+                parsed["date"] = matched.date or parsed["date"]
+                parsed["time"] = matched.time or parsed["time"]
+                parsed["court"] = matched.court or parsed["court"]
+                parsed["renterCode"] = matched.renter_code or parsed["renterCode"]
+                parsed["extraCode"] = matched.extra_code or parsed["extraCode"]
             else:
-                parsed["renterCode"] = parsed["renterCode"] or matched.renter_code
-                parsed["extraCode"] = parsed["extraCode"] or matched.extra_code
+                parsed["date"] = parsed["date"] or matched.date
+                parsed["time"] = parsed["time"] or matched.time
+                parsed["court"] = parsed["court"] or matched.court
+                if not parsed.pop("codesConfident", False):
+                    parsed["renterCode"] = matched.renter_code
+                    parsed["extraCode"] = matched.extra_code
+                else:
+                    parsed["renterCode"] = parsed["renterCode"] or matched.renter_code
+                    parsed["extraCode"] = parsed["extraCode"] or matched.extra_code
         else:
             parsed.pop("codesConfident", None)
 
