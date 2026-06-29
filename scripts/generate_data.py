@@ -344,6 +344,20 @@ def build_records() -> dict:
                 records.append(parsed)
                 existing_sources.add(row.source)
 
+    # Preserve manual rows that intentionally have no source filename.
+    # These rows cannot be matched by source, so keep them if their booking tuple
+    # is not already represented by an OCR-backed record.
+    for row in manual_rows:
+        if row.source:
+            continue
+        row_key = (row.date.strip(), row.time.strip(), row.court.strip())
+        if any((record.get("date", "").strip(), record.get("time", "").strip(), record.get("court", "").strip()) == row_key for record in records):
+            continue
+        parsed = manual_row_to_record(row)
+        parsed["renterName"] = name_map.get(normalize_code(parsed["renterCode"]), "") or row.renter_name
+        parsed["extraName"] = name_map.get(normalize_code(parsed["extraCode"]), "") or row.extra_name
+        records.append(parsed)
+
     manual_sources = {row.source for row in manual_rows if row.source}
 
     def booking_key(record: dict) -> tuple:
