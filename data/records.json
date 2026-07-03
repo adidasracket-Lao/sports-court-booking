@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T18:22:27.118763+08:00",
+  "generatedAt": "2026-07-03T23:51:26.316616+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -767,12 +767,12 @@
       "time": "18:00~19:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4258.jpg",
       "sourceFile": "IMG_4258.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4263",
@@ -1313,12 +1313,12 @@
       "time": "17:00~18:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4304.jpg",
       "sourceFile": "IMG_4304.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4305",
@@ -1612,12 +1612,12 @@
       "time": "17:00~18:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4328.jpg",
       "sourceFile": "IMG_4328.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4329",
@@ -1651,12 +1651,12 @@
       "time": "08:00~09:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4331.jpg",
       "sourceFile": "IMG_4331.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4333",
@@ -1729,12 +1729,12 @@
       "time": "18:00~19:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4339.jpg",
       "sourceFile": "IMG_4339.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4337",
@@ -1820,12 +1820,12 @@
       "time": "17:00~18:00",
       "court": "羽毛球6號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4344.jpg",
       "sourceFile": "IMG_4344.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4347",
@@ -2041,12 +2041,12 @@
       "time": "08:00~09:00",
       "court": "羽毛球10號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4362.jpg",
       "sourceFile": "IMG_4362.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4363",
@@ -2716,12 +2716,12 @@
       "time": "08:00~09:00",
       "court": "羽毛球10號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4414.jpg",
       "sourceFile": "IMG_4414.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4415",
@@ -2774,6 +2774,19 @@
       "sourceFile": "IMG_4417.jpg",
       "renterName": "",
       "extraName": "嘉浩"
+    },
+    {
+      "id": "IMG_4430",
+      "date": "2026/7/4",
+      "time": "09:00~10:00",
+      "court": "羽毛球4號場",
+      "renterCode": "8646",
+      "extraCode": "",
+      "codesConfident": true,
+      "image": "uploads/IMG_4430.jpg",
+      "sourceFile": "IMG_4430.jpg",
+      "renterName": "龍",
+      "extraName": ""
     },
     {
       "id": "IMG_4419",
@@ -2859,12 +2872,12 @@
       "time": "17:00~18:00",
       "court": "羽毛球2號場",
       "renterCode": "0843",
-      "extraCode": "0843",
+      "extraCode": "",
       "codesConfident": true,
       "image": "uploads/IMG_4424.jpg",
       "sourceFile": "IMG_4424.jpg",
       "renterName": "Wing",
-      "extraName": "Wing"
+      "extraName": ""
     },
     {
       "id": "IMG_4426",

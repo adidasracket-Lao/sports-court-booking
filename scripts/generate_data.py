@@ -311,6 +311,8 @@ def build_records() -> dict:
                 parsed["court"] = matched.court or parsed["court"]
                 parsed["renterCode"] = matched.renter_code or parsed["renterCode"]
                 parsed["extraCode"] = matched.extra_code or parsed["extraCode"]
+                if not matched.extra_code and parsed.get("extraCode") == parsed.get("renterCode"):
+                    parsed["extraCode"] = ""
             else:
                 parsed["date"] = parsed["date"] or matched.date
                 parsed["time"] = parsed["time"] or matched.time
