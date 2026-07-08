@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T11:19:21.715526+08:00",
+  "generatedAt": "2026-07-08T11:37:52.372610+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -3604,7 +3604,7 @@
       "court": "羽毛球10號場",
       "renterCode": "7369",
       "extraCode": "0843",
-      "codesConfident": true,
+      "codesConfident": false,
       "image": "uploads/IMG_4456.jpg",
       "sourceFile": "IMG_4456.jpg",
       "renterName": "",
@@ -3617,7 +3617,7 @@
       "court": "羽毛球11號場",
       "renterCode": "9528",
       "extraCode": "6175",
-      "codesConfident": false,
+      "codesConfident": true,
       "image": "uploads/IMG_4457.jpg",
       "sourceFile": "IMG_4457.jpg",
       "renterName": "",
