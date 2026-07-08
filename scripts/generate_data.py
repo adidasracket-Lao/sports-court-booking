@@ -309,10 +309,8 @@ def build_records() -> dict:
                 parsed["date"] = matched.date or parsed["date"]
                 parsed["time"] = matched.time or parsed["time"]
                 parsed["court"] = matched.court or parsed["court"]
-                parsed["renterCode"] = matched.renter_code or parsed["renterCode"]
-                parsed["extraCode"] = matched.extra_code or parsed["extraCode"]
-                if not matched.extra_code and parsed.get("extraCode") == parsed.get("renterCode"):
-                    parsed["extraCode"] = ""
+                parsed["renterCode"] = matched.renter_code or ""
+                parsed["extraCode"] = matched.extra_code or ""
             else:
                 parsed["date"] = parsed["date"] or matched.date
                 parsed["time"] = parsed["time"] or matched.time
@@ -352,8 +350,14 @@ def build_records() -> dict:
     for row in manual_rows:
         if row.source:
             continue
-        row_key = (row.date.strip(), row.time.strip(), row.court.strip())
-        if any((record.get("date", "").strip(), record.get("time", "").strip(), record.get("court", "").strip()) == row_key for record in records):
+        row_key = (row.date.strip(), row.time.strip(), row.court.strip(), row.renter_code.strip(), row.extra_code.strip())
+        if any((
+            record.get("date", "").strip(),
+            record.get("time", "").strip(),
+            record.get("court", "").strip(),
+            record.get("renterCode", "").strip(),
+            record.get("extraCode", "").strip(),
+        ) == row_key for record in records):
             continue
         parsed = manual_row_to_record(row)
         parsed["renterName"] = name_map.get(normalize_code(parsed["renterCode"]), "") or row.renter_name
@@ -367,6 +371,8 @@ def build_records() -> dict:
             record.get("date", "").strip(),
             record.get("time", "").strip(),
             record.get("court", "").strip(),
+            record.get("renterCode", "").strip(),
+            record.get("extraCode", "").strip(),
         )
 
     def record_priority(record: dict) -> tuple:
