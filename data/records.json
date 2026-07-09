@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T11:37:52.372610+08:00",
+  "generatedAt": "2026-07-09T11:08:30.471405+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -3687,6 +3687,32 @@
       "sourceFile": "IMG_4462.jpg",
       "renterName": "",
       "extraName": ""
+    },
+    {
+      "id": "IMG_4807",
+      "date": "2026/7/12",
+      "time": "17:00~18:00",
+      "court": "羽毛球7號場",
+      "renterCode": "4380",
+      "extraCode": "0843",
+      "codesConfident": false,
+      "image": "uploads/IMG_4807.jpg",
+      "sourceFile": "IMG_4807.jpg",
+      "renterName": "",
+      "extraName": "Wing"
+    },
+    {
+      "id": "IMG_4808",
+      "date": "2026/7/12",
+      "time": "18:00~19:00",
+      "court": "羽毛球7號場",
+      "renterCode": "9709",
+      "extraCode": "0843",
+      "codesConfident": true,
+      "image": "uploads/IMG_4808.jpg",
+      "sourceFile": "IMG_4808.jpg",
+      "renterName": "",
+      "extraName": "Wing"
     }
   ],
   "nameMap": {
