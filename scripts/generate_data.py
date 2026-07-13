@@ -199,6 +199,8 @@ def match_manual_row(parsed: dict, manual_rows: List[ManualRow]) -> Optional[Man
     best_score = -1
 
     for row in manual_rows:
+        if row.source:
+            continue  # source-bearing rows only match by exact filename
         score = 0
         if parsed.get("date") and parsed["date"] == row.date:
             score += 2
@@ -216,14 +218,6 @@ def match_manual_row(parsed: dict, manual_rows: List[ManualRow]) -> Optional[Man
             best_row = row
 
     return best_row if best_score >= 6 else None
-
-
-def manual_sort_key(row: ManualRow) -> tuple:
-    try:
-        dt = datetime.strptime(f"{row.date} {row.time.split('~', 1)[0]}", "%Y/%m/%d %H:%M")
-        return (dt, row.court, row.renter_code, row.extra_code)
-    except Exception:
-        return (datetime.max, row.court, row.renter_code, row.extra_code)
 
 
 def record_sort_key(record: dict) -> tuple:
@@ -288,19 +282,10 @@ def build_records() -> dict:
         )
 
     records = []
-    # Prefer explicit image/source matching. Order-based matching is only safe for
-    # older CSV files that do not contain any source filename.
     has_manual_sources = any(row.source for row in manual_rows)
-    use_manual_by_order = bool(manual_rows) and not has_manual_sources and len(manual_rows) == len(parsed_images)
-    sorted_manual_rows = sorted(manual_rows, key=manual_sort_key)
-    sorted_images = sorted(parsed_images, key=record_sort_key)
 
-    for index, parsed in enumerate(sorted_images):
-        matched = None
-        if use_manual_by_order:
-            matched = sorted_manual_rows[index]
-        else:
-            matched = match_manual_row(parsed, manual_rows)
+    for parsed in sorted(parsed_images, key=record_sort_key):
+        matched = match_manual_row(parsed, manual_rows)
 
         if matched:
             source = parsed.get("sourceFile", "")
