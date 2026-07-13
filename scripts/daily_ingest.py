@@ -10,7 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -172,6 +172,43 @@ def ingest(dry_run: bool) -> dict:
     return report
 
 
+def is_past_booking(parsed: dict, today: date = None) -> bool:
+    try:
+        year, month, day = (int(x) for x in parsed.get("date", "").split("/"))
+        booking = date(year, month, day)
+    except (ValueError, TypeError):
+        return False  # 讀不出日期就當未過期，寧可保留
+    return booking < (today or date.today())
+
+
+def bootstrap_state() -> dict:
+    """Mark existing cache images as processed — but never swallow un-ingested new receipts.
+
+    An image is only marked when it is (a) not a receipt, (b) a receipt already in the
+    CSV, or (c) a receipt for a past booking. Anything else is left for normal ingest.
+    """
+    state = load_state()
+    processed = set(state.get("processed_hashes", []))
+    existing = known_receipt_ids()
+    report = {"marked": 0, "kept_unprocessed": []}
+    for path in sorted(CACHE_DIR.iterdir()):
+        if path.suffix.lower() not in IMAGE_EXTENSIONS or not path.is_file():
+            continue
+        digest = sha1_of(path)
+        if digest in processed:
+            continue
+        text = ocr_cache_image(path)
+        receipt_id = extract_receipt_id(text)
+        if receipt_id and receipt_id not in existing and not is_past_booking(parse_receipt(text)):
+            report["kept_unprocessed"].append(path.name)
+            continue
+        processed.add(digest)
+        report["marked"] += 1
+    state["processed_hashes"] = sorted(processed)
+    save_state(state)
+    return report
+
+
 def notify(title: str, message: str) -> None:
     script = f'display notification "{message}" with title "{title}"'
     subprocess.run(["osascript", "-e", script], check=False, capture_output=True)
@@ -211,18 +248,12 @@ def main() -> int:
     log = logging.getLogger("ingest")
 
     if args.bootstrap:
-        state = load_state()
-        hashes = set(state.get("processed_hashes", []))
-        count = 0
-        for path in sorted(CACHE_DIR.iterdir()):
-            if path.suffix.lower() in IMAGE_EXTENSIONS and path.is_file():
-                digest = sha1_of(path)
-                if digest not in hashes:
-                    hashes.add(digest)
-                    count += 1
-        state["processed_hashes"] = sorted(hashes)
-        save_state(state)
-        log.info("bootstrap: marked %d cache images as processed", count)
+        report = bootstrap_state()
+        log.info("bootstrap: marked=%d kept_unprocessed=%s",
+                 report["marked"], report["kept_unprocessed"])
+        if report["kept_unprocessed"]:
+            log.info("以上 %d 張為未入庫的新收據，正常執行（無參數）即可入庫",
+                     len(report["kept_unprocessed"]))
         return 0
 
     try:

@@ -67,6 +67,7 @@ import daily_ingest
 from daily_ingest import (
     make_filename, csv_line, known_receipt_ids, append_csv_lines,
     sha1_of, list_new_images, load_state, save_state, ingest,
+    bootstrap_state, is_past_booking,
 )
 
 
@@ -156,6 +157,48 @@ class PipelineTest(unittest.TestCase):
                                         return_value="收據編號: IDOB260714073001ABC\n使用日期: 2026-07-16\n使用時段: 19:00~20:00"):
             report = ingest(dry_run=False)
         self.assertEqual(report["added"], [])
+
+
+from datetime import date
+
+
+class IsPastBookingTest(unittest.TestCase):
+    def test_past(self):
+        self.assertTrue(is_past_booking({"date": "2026/7/10"}, today=date(2026, 7, 13)))
+
+    def test_future(self):
+        self.assertFalse(is_past_booking({"date": "2026/7/16"}, today=date(2026, 7, 13)))
+
+    def test_unparsable_counts_as_not_past(self):
+        self.assertFalse(is_past_booking({"date": ""}, today=date(2026, 7, 13)))
+
+
+class BootstrapTest(PipelineTest):
+    """繼承 PipelineTest 的 tmp 環境。bootstrap 不得吞掉未入庫的新收據。"""
+
+    def test_bootstrap_keeps_new_receipts_unprocessed(self):
+        (self.tmp / "cache" / "new_receipt.jpg").write_bytes(b"new")
+        (self.tmp / "cache" / "old_receipt.jpg").write_bytes(b"old")
+        (self.tmp / "cache" / "avatar.jpg").write_bytes(b"face")
+        (self.tmp / "cache" / "expired.jpg").write_bytes(b"past")
+        append_csv_lines(["2026/7/16 19:00~20:00,,1,2,,,20260716_IDOB260713073001AAA.jpg"])
+        future = "2999/12/31"
+        ocr_map = {
+            "new_receipt.jpg": "收據編號: IDOB260713073002BBB\n使用日期: 2099-12-31\n使用時段: 19:00~20:00",
+            "old_receipt.jpg": "收據編號: IDOB260713073001AAA\n使用日期: 2099-12-31",  # 已在 CSV
+            "avatar.jpg": "自拍照",
+            "expired.jpg": "收據編號: IDOB200101073001CCC\n使用日期: 2020-01-01\n使用時段: 10:00~11:00",
+        }
+        with unittest.mock.patch.object(daily_ingest, "ocr_cache_image",
+                                        side_effect=lambda p: ocr_map[p.name]):
+            report = bootstrap_state()
+        self.assertEqual(report["kept_unprocessed"], ["new_receipt.jpg"])
+        self.assertEqual(report["marked"], 3)
+        # 之後正常 ingest 仍能撿到那張新收據
+        with unittest.mock.patch.object(daily_ingest, "ocr_cache_image",
+                                        side_effect=lambda p: ocr_map[p.name]):
+            ingest_report = ingest(dry_run=True)
+        self.assertEqual(ingest_report["added"], ["20991231_IDOB260713073002BBB.jpg"])
 
 
 if __name__ == "__main__":
