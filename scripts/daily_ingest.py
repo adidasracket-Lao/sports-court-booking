@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Daily auto-ingest: pull booking receipts from Hermes image cache into the site repo."""
+import argparse
 import csv
 import hashlib
 import io
 import json
+import logging
 import re
 import shutil
+import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -32,7 +36,7 @@ RECEIPT_KEYWORDS = ("收據", "體育局", "使用時段", "租場者", "場區�
 
 def extract_receipt_id(text: str) -> str:
     compact = text.replace(" ", "")
-    match = re.search(r"[I1]DOB([A-Z0-9]{12,18})", compact)
+    match = re.search(r"[I1TL]DOB([A-Z0-9]{12,18})", compact)
     return f"IDOB{match.group(1)}" if match else ""
 
 
@@ -166,3 +170,91 @@ def ingest(dry_run: bool) -> dict:
         state["processed_hashes"] = state.get("processed_hashes", []) + new_hashes
         save_state(state)
     return report
+
+
+def notify(title: str, message: str) -> None:
+    script = f'display notification "{message}" with title "{title}"'
+    subprocess.run(["osascript", "-e", script], check=False, capture_output=True)
+
+
+def git_sync(added: list) -> None:
+    def run(*args, check=True):
+        return subprocess.run(["git", "-C", str(ROOT), *args],
+                              check=check, capture_output=True, text=True)
+
+    # autostash tolerates unrelated dirty files (e.g. regenerated records.json)
+    run("pull", "--rebase", "--autostash", "origin", "main")
+    # add the whole uploads dir so files left behind by an earlier failed push get swept up
+    run("add", str(UPLOAD_DIR), str(MANUAL_CSV))
+    staged = run("diff", "--cached", "--quiet", check=False)
+    if staged.returncode == 0:
+        return  # nothing to commit
+    message = (f"Auto-ingest {datetime.now():%Y-%m-%d}: add {len(added)} booking records\n\n"
+               "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>")
+    run("commit", "-m", message)
+    run("push", "origin", "main")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Ingest booking receipts from Hermes cache.")
+    parser.add_argument("--dry-run", action="store_true", help="report only; no writes")
+    parser.add_argument("--bootstrap", action="store_true",
+                        help="mark all current cache images as processed without ingesting")
+    args = parser.parse_args()
+
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(message)s",
+        handlers=[logging.FileHandler(LOG_FILE, encoding="utf-8"), logging.StreamHandler()],
+    )
+    log = logging.getLogger("ingest")
+
+    if args.bootstrap:
+        state = load_state()
+        hashes = set(state.get("processed_hashes", []))
+        count = 0
+        for path in sorted(CACHE_DIR.iterdir()):
+            if path.suffix.lower() in IMAGE_EXTENSIONS and path.is_file():
+                digest = sha1_of(path)
+                if digest not in hashes:
+                    hashes.add(digest)
+                    count += 1
+        state["processed_hashes"] = sorted(hashes)
+        save_state(state)
+        log.info("bootstrap: marked %d cache images as processed", count)
+        return 0
+
+    try:
+        report = ingest(dry_run=args.dry_run)
+    except Exception:
+        log.exception("ingest failed")
+        notify("羽毛球場地入庫失敗", "OCR/檔案階段出錯，詳見 badminton-ingest.log")
+        return 1
+
+    log.info("added=%s incomplete=%s suspects=%s",
+             report["added"], report["incomplete"], report["suspects"])
+
+    if args.dry_run:
+        print(json.dumps(report, ensure_ascii=False, indent=1))
+        return 0
+
+    # run even when added==[] so files left by an earlier failed push get committed
+    try:
+        git_sync(report["added"])
+    except subprocess.CalledProcessError as error:
+        log.error("git failed: %s\n%s", error, error.stderr)
+        notify("羽毛球場地 push 失敗", "git 出錯，詳見 badminton-ingest.log")
+        return 1
+
+    parts = [f"新增 {len(report['added'])} 筆"]
+    if report["incomplete"]:
+        parts.append(f"{len(report['incomplete'])} 筆欄位不全需人手補")
+    if report["suspects"]:
+        parts.append(f"{len(report['suspects'])} 張疑似收據讀不到編號")
+    notify("羽毛球場地更新", "，".join(parts))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -23,6 +23,10 @@ class ReceiptIdTest(unittest.TestCase):
         self.assertEqual(extract_receipt_id("收據編號: 1DOB260712073009KG1"),
                          "IDOB260712073009KG1")
 
+    def test_ocr_t_for_i(self):
+        self.assertEqual(extract_receipt_id("收據編號: TDOB260713073109BIV"),
+                         "IDOB260713073109BIV")
+
     def test_space_inside(self):
         self.assertEqual(extract_receipt_id("收據編號 : IDOB26071 2073004WXI"),
                          "IDOB260712073004WXI")
