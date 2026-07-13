@@ -157,18 +157,21 @@ def extract_court(text: str) -> str:
                 return f"羽毛球{value}號場"
             return f"羽毛球場{value}"
 
+    # Fallback: only trust 1-2 digits directly attached to 號場, so renter codes
+    # (e.g. 租場者: 9409) can never be mistaken for a court number.
     for line in text.splitlines():
-        if "號場" in line or "场" in line or "場" in line:
-            digits = re.findall(r"([0-9]+)", line)
+        if "號場" in line:
+            digits = re.findall(r"([0-9]{1,2})\s*號場", line)
             if digits:
                 return f"羽毛球{digits[-1]}號場"
     return ""
 
 
 def extract_codes(text: str) -> List[str]:
+    # 埸 is a common OCR misread of 場
     explicit_patterns = [
-        r"租場者[^0-9]*(\d{3,4})",
-        r"額外取場者[^0-9]*(\d{3,4})",
+        r"租[場埸]者[^0-9]*(\d{3,4})",
+        r"額外取[場埸]者[^0-9]*(\d{3,4})",
     ]
     found: List[str] = []
     for pattern in explicit_patterns:

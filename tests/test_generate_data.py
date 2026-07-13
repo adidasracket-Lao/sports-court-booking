@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
-from generate_data import ManualRow, match_manual_row
+from generate_data import ManualRow, extract_codes, extract_court, match_manual_row
 
 
 def make_row(**kw):
@@ -36,6 +36,26 @@ class MatchManualRowTest(unittest.TestCase):
                   "time": "18:00~19:00", "court": "羽毛球5號場",
                   "renter_code": "7836", "extra_code": "8317"}
         self.assertIs(match_manual_row(parsed, rows), rows[0])
+
+
+class ExtractCourtTest(unittest.TestCase):
+    def test_explicit_court(self):
+        self.assertEqual(extract_court("場區編號:羽毛球8號場"), "羽毛球8號場")
+
+    def test_fallback_ignores_renter_code_line(self):
+        # 場區編號讀不到時，不得把租場者代碼當場號
+        text = "場區編 場\n租場者: 9409\n額外取場者: 1086"
+        self.assertEqual(extract_court(text), "")
+
+    def test_fallback_digits_attached_to_haochang(self):
+        self.assertEqual(extract_court("亂碼 11號場 亂碼"), "羽毛球11號場")
+
+
+class ExtractCodesTest(unittest.TestCase):
+    def test_ocr_variant_chang(self):
+        # 埸 為 場 的常見 OCR 誤讀
+        codes = extract_codes("租埸者: 9709\n額外取場者: 0843")
+        self.assertEqual(codes, ["9709", "0843"])
 
 
 if __name__ == "__main__":
