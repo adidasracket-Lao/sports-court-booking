@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T11:08:43.838188+08:00",
+  "generatedAt": "2026-07-20T11:12:52.741046+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -621,7 +621,8 @@
       "court": "羽毛球2號場",
       "renterCode": "7369",
       "extraCode": "1086",
-      "image": "",
+      "codesConfident": true,
+      "image": "uploads/IMG_4257.jpg",
       "sourceFile": "IMG_4257.jpg",
       "renterName": "",
       "extraName": "柏熙"
