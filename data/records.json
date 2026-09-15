@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T08:14:52.154619+08:00",
+  "generatedAt": "2026-09-15T10:50:58.729897+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -5334,6 +5334,19 @@
       "sourceFile": "20260915_IDOB260912073005S78.jpg",
       "renterName": "",
       "extraName": "Wing"
+    },
+    {
+      "id": "20260918_IDOB260915073006F54",
+      "date": "2026/9/18",
+      "time": "21:00~22:00",
+      "court": "羽毛球7號場",
+      "renterCode": "9761",
+      "extraCode": "",
+      "codesConfident": true,
+      "image": "uploads/20260918_IDOB260915073006F54.jpg",
+      "sourceFile": "20260918_IDOB260915073006F54.jpg",
+      "renterName": "康",
+      "extraName": ""
     }
   ],
   "nameMap": {
