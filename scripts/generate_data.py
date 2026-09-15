@@ -355,12 +355,13 @@ def build_records() -> dict:
     manual_sources = {row.source for row in manual_rows if row.source}
 
     def booking_key(record: dict) -> tuple:
+        # Visible table rows are uniquely identified by slot only. OCR/code churn
+        # (or duplicate source files for the same receipt) must not create extra
+        # displayed bookings.
         return (
             record.get("date", "").strip(),
             record.get("time", "").strip(),
             record.get("court", "").strip(),
-            record.get("renterCode", "").strip(),
-            record.get("extraCode", "").strip(),
         )
 
     def record_priority(record: dict) -> tuple:
