@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T11:16:28.913101+08:00",
+  "generatedAt": "2026-09-15T12:06:45.883789+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -4540,7 +4540,7 @@
       "image": "uploads/20260904_IDOB260901073008BBJ.jpg",
       "sourceFile": "20260904_IDOB260901073008BBJ.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "聰"
     },
     {
       "id": "20260904_IDOB260901073009FF3",
@@ -4592,7 +4592,7 @@
       "image": "uploads/20260904_IDOB2609010730064CT.jpg",
       "sourceFile": "20260904_IDOB2609010730064CT.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "聰"
     },
     {
       "id": "20260904_IDOB260901073008143",
@@ -4670,7 +4670,7 @@
       "image": "uploads/20260905_IDOB260902073005CU9.jpg",
       "sourceFile": "20260905_IDOB260902073005CU9.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "聰"
     },
     {
       "id": "20260905_IDOB260902073008DIP",
@@ -4709,7 +4709,7 @@
       "image": "uploads/20260905_IDOB260902073016GEB.jpg",
       "sourceFile": "20260905_IDOB260902073016GEB.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "聰"
     },
     {
       "id": "20260906_IDOB260903073011AL5",
@@ -5125,7 +5125,7 @@
       "image": "uploads/20260911_IDOB260908073008YPO.jpg",
       "sourceFile": "20260911_IDOB260908073008YPO.jpg",
       "renterName": "康",
-      "extraName": ""
+      "extraName": "聰"
     },
     {
       "id": "20260912_IDOB260909073006QIT",
@@ -5353,12 +5353,12 @@
       "date": "2026/9/18",
       "time": "20:00~21:00",
       "court": "羽毛球12號場",
-      "renterCode": "",
+      "renterCode": "5142",
       "extraCode": "",
       "codesConfident": false,
       "image": "uploads/20260918_2000_2100_court12_img_60d05f285224.jpg",
       "sourceFile": "20260918_2000_2100_court12_img_60d05f285224.jpg",
-      "renterName": "",
+      "renterName": "聰",
       "extraName": ""
     },
     {
@@ -5460,6 +5460,7 @@
     "1086": "柏熙",
     "4198": "俊溢",
     "9571": "十",
-    "9170": "濠祥"
+    "9170": "濠祥",
+    "5142": "聰"
   }
 }
