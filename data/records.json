@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T10:20:35.288466+08:00",
+  "generatedAt": "2026-10-05T10:30:23.196724+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -6389,6 +6389,32 @@
       "extraName": "Wing"
     },
     {
+      "id": "20261008_IDOB2610050730083L2",
+      "date": "2026/10/8",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4380",
+      "extraCode": "6175",
+      "codesConfident": false,
+      "image": "uploads/20261008_IDOB2610050730083L2.jpg",
+      "sourceFile": "20261008_IDOB2610050730083L2.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "20261008_IDOB261005073013NIF",
+      "date": "2026/10/8",
+      "time": "17:00~18:00",
+      "court": "羽毛球6號場",
+      "renterCode": "9528",
+      "extraCode": "6185",
+      "codesConfident": true,
+      "image": "uploads/20261008_IDOB261005073013NIF.jpg",
+      "sourceFile": "20261008_IDOB261005073013NIF.jpg",
+      "renterName": "",
+      "extraName": "杜"
+    },
+    {
       "id": "20261008_IDOB261005073011UKJ",
       "date": "2026/10/8",
       "time": "17:00~18:00",
@@ -6400,6 +6426,45 @@
       "sourceFile": "20261008_IDOB261005073011UKJ.jpg",
       "renterName": "Wing",
       "extraName": ""
+    },
+    {
+      "id": "20261008_IDOB261005073009628",
+      "date": "2026/10/8",
+      "time": "18:00~19:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "6175",
+      "codesConfident": true,
+      "image": "uploads/20261008_IDOB261005073009628.jpg",
+      "sourceFile": "20261008_IDOB261005073009628.jpg",
+      "renterName": "",
+      "extraName": "嘉浩"
+    },
+    {
+      "id": "20261008_IDOB261005073005M45",
+      "date": "2026/10/8",
+      "time": "18:00~19:00",
+      "court": "羽毛球6號場",
+      "renterCode": "7369",
+      "extraCode": "7481",
+      "codesConfident": true,
+      "image": "uploads/20261008_IDOB261005073005M45.jpg",
+      "sourceFile": "20261008_IDOB261005073005M45.jpg",
+      "renterName": "",
+      "extraName": "庭彰"
+    },
+    {
+      "id": "20261008_IDOB261005073004PU1",
+      "date": "2026/10/8",
+      "time": "18:00~19:00",
+      "court": "羽毛球7號場",
+      "renterCode": "4446",
+      "extraCode": "0843",
+      "codesConfident": true,
+      "image": "uploads/20261008_IDOB261005073004PU1.jpg",
+      "sourceFile": "20261008_IDOB261005073004PU1.jpg",
+      "renterName": "",
+      "extraName": "Wing"
     }
   ],
   "nameMap": {
