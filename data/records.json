@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:55:20.269287+08:00",
+  "generatedAt": "2026-10-12T11:07:15.552304+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -6818,6 +6818,45 @@
       "extraName": "Wing"
     },
     {
+      "id": "20261015_IDOB261012073009LT3",
+      "date": "2026/10/15",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4380",
+      "extraCode": "9170",
+      "codesConfident": true,
+      "image": "uploads/20261015_IDOB261012073009LT3.jpg",
+      "sourceFile": "20261015_IDOB261012073009LT3.jpg",
+      "renterName": "",
+      "extraName": "濠祥"
+    },
+    {
+      "id": "20261015_IDOB261012073014R4T",
+      "date": "2026/10/15",
+      "time": "17:00~18:00",
+      "court": "羽毛球6號場",
+      "renterCode": "9528",
+      "extraCode": "1086",
+      "codesConfident": true,
+      "image": "uploads/20261015_IDOB261012073014R4T.jpg",
+      "sourceFile": "20261015_IDOB261012073014R4T.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
+      "id": "20261015_IDOB261012073012T0D",
+      "date": "2026/10/15",
+      "time": "17:00~18:00",
+      "court": "羽毛球7號場",
+      "renterCode": "0843",
+      "extraCode": "8646",
+      "codesConfident": true,
+      "image": "uploads/20261015_IDOB261012073012T0D.jpg",
+      "sourceFile": "20261015_IDOB261012073012T0D.jpg",
+      "renterName": "Wing",
+      "extraName": ""
+    },
+    {
       "id": "20261015_IDOB261012073006MJP",
       "date": "2026/10/15",
       "time": "18:00~19:00",
@@ -6829,6 +6868,32 @@
       "sourceFile": "20261015_IDOB261012073006MJP.jpg",
       "renterName": "",
       "extraName": "庭彰"
+    },
+    {
+      "id": "20261015_IDOB2610120730108QA",
+      "date": "2026/10/15",
+      "time": "18:00~19:00",
+      "court": "羽毛球6號場",
+      "renterCode": "7369",
+      "extraCode": "1086",
+      "codesConfident": true,
+      "image": "uploads/20261015_IDOB2610120730108QA.jpg",
+      "sourceFile": "20261015_IDOB2610120730108QA.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
+      "id": "20261015_IDOB2610120730073GN",
+      "date": "2026/10/15",
+      "time": "18:00~19:00",
+      "court": "羽毛球7號場",
+      "renterCode": "4446",
+      "extraCode": "8646",
+      "codesConfident": true,
+      "image": "uploads/20261015_IDOB2610120730073GN.jpg",
+      "sourceFile": "20261015_IDOB2610120730073GN.jpg",
+      "renterName": "",
+      "extraName": ""
     }
   ],
   "nameMap": {
