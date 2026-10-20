@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T11:13:45.580148+08:00",
+  "generatedAt": "2026-10-20T15:04:33.083259+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -2219,7 +2219,7 @@
       "extraCode": "1059",
       "image": "",
       "sourceFile": "IMG_4385.jpg",
-      "renterName": "",
+      "renterName": "石",
       "extraName": "Ayo"
     },
     {
@@ -3311,7 +3311,7 @@
       "extraCode": "6492",
       "image": "",
       "sourceFile": "IMG_4453.jpg",
-      "renterName": "",
+      "renterName": "石",
       "extraName": "譚健朗"
     },
     {
@@ -7465,7 +7465,7 @@
       "image": "uploads/20261023_IDOB261020073005320.jpg",
       "sourceFile": "20261023_IDOB261020073005320.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "石"
     },
     {
       "id": "20261023_IDOB261020073006QQW",
@@ -7504,7 +7504,7 @@
       "image": "uploads/20261023_IDOB261020073008S0J.jpg",
       "sourceFile": "20261023_IDOB261020073008S0J.jpg",
       "renterName": "",
-      "extraName": ""
+      "extraName": "石"
     },
     {
       "id": "20261023_IDOB261020073013TTV",
@@ -7555,6 +7555,7 @@
     "9571": "十",
     "9170": "濠祥",
     "5142": "聰",
-    "8550": "君博"
+    "8550": "君博",
+    "2140": "石"
   }
 }
