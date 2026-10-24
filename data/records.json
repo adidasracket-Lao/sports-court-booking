@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T07:48:24.851413+08:00",
+  "generatedAt": "2026-10-24T08:02:23.386833+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -7663,6 +7663,32 @@
       "extraName": "Wing"
     },
     {
+      "id": "20261027_IDOB261024073006Y52",
+      "date": "2026/10/27",
+      "time": "17:00~18:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4380",
+      "extraCode": "6175",
+      "codesConfident": false,
+      "image": "uploads/20261027_IDOB261024073006Y52.jpg",
+      "sourceFile": "20261027_IDOB261024073006Y52.jpg",
+      "renterName": "",
+      "extraName": "家浩"
+    },
+    {
+      "id": "20261027_IDOB261024073059ITO",
+      "date": "2026/10/27",
+      "time": "17:00~18:00",
+      "court": "羽毛球6號場",
+      "renterCode": "9528",
+      "extraCode": "1086",
+      "codesConfident": true,
+      "image": "uploads/20261027_IDOB261024073059ITO.jpg",
+      "sourceFile": "20261027_IDOB261024073059ITO.jpg",
+      "renterName": "",
+      "extraName": "柏熙"
+    },
+    {
       "id": "20261027_IDOB2610240730128QD",
       "date": "2026/10/27",
       "time": "17:00~18:00",
@@ -7674,6 +7700,32 @@
       "sourceFile": "20261027_IDOB2610240730128QD.jpg",
       "renterName": "Wing",
       "extraName": ""
+    },
+    {
+      "id": "20261027_IDOB261024073007CJS",
+      "date": "2026/10/27",
+      "time": "18:00~19:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "6175",
+      "codesConfident": true,
+      "image": "uploads/20261027_IDOB261024073007CJS.jpg",
+      "sourceFile": "20261027_IDOB261024073007CJS.jpg",
+      "renterName": "",
+      "extraName": "家浩"
+    },
+    {
+      "id": "20261027_IDOB261024073009XMS",
+      "date": "2026/10/27",
+      "time": "18:00~19:00",
+      "court": "羽毛球6號場",
+      "renterCode": "7369",
+      "extraCode": "0843",
+      "codesConfident": true,
+      "image": "uploads/20261027_IDOB261024073009XMS.jpg",
+      "sourceFile": "20261027_IDOB261024073009XMS.jpg",
+      "renterName": "",
+      "extraName": "Wing"
     }
   ],
   "nameMap": {
