@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T08:07:20.075260+08:00",
+  "generatedAt": "2026-10-27T07:58:54.485280+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -7830,6 +7830,149 @@
       "sourceFile": "20261029_IDOB2610260730067OW.jpg",
       "renterName": "",
       "extraName": "Wing"
+    },
+    {
+      "id": "20261030_2000_court2_partial_cc6400688255",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球2號場",
+      "renterCode": "",
+      "extraCode": "",
+      "codesConfident": false,
+      "image": "uploads/20261030_2000_court2_partial_cc6400688255.jpg",
+      "sourceFile": "20261030_2000_court2_partial_cc6400688255.jpg",
+      "renterName": "",
+      "extraName": ""
+    },
+    {
+      "id": "20261030_IDOB261027073005N47",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球3號場",
+      "renterCode": "5949",
+      "extraCode": "9963",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073005N47.jpg",
+      "sourceFile": "20261030_IDOB261027073005N47.jpg",
+      "renterName": "",
+      "extraName": "延峰"
+    },
+    {
+      "id": "20261030_IDOB2610270730072E1",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球4號場",
+      "renterCode": "1059",
+      "extraCode": "6175",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB2610270730072E1.jpg",
+      "sourceFile": "20261030_IDOB2610270730072E1.jpg",
+      "renterName": "Ayo",
+      "extraName": "家浩"
+    },
+    {
+      "id": "20261030_IDOB261027073007MS4",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球5號場",
+      "renterCode": "4446",
+      "extraCode": "4192",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073007MS4.jpg",
+      "sourceFile": "20261030_IDOB261027073007MS4.jpg",
+      "renterName": "",
+      "extraName": ""
+    },
+    {
+      "id": "20261030_IDOB261027073006TTV",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球6號場",
+      "renterCode": "4380",
+      "extraCode": "0813",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073006TTV.jpg",
+      "sourceFile": "20261030_IDOB261027073006TTV.jpg",
+      "renterName": "",
+      "extraName": "萬子軒"
+    },
+    {
+      "id": "20261030_IDOB261027073005XWI",
+      "date": "2026/10/30",
+      "time": "20:00~21:00",
+      "court": "羽毛球7號場",
+      "renterCode": "7369",
+      "extraCode": "5142",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073005XWI.jpg",
+      "sourceFile": "20261030_IDOB261027073005XWI.jpg",
+      "renterName": "",
+      "extraName": "聰"
+    },
+    {
+      "id": "20261030_2100_court2_partial_36755bb6dba5",
+      "date": "2026/10/30",
+      "time": "21:00~22:00",
+      "court": "羽毛球2號場",
+      "renterCode": "",
+      "extraCode": "",
+      "codesConfident": false,
+      "image": "uploads/20261030_2100_court2_partial_36755bb6dba5.jpg",
+      "sourceFile": "20261030_2100_court2_partial_36755bb6dba5.jpg",
+      "renterName": "",
+      "extraName": ""
+    },
+    {
+      "id": "20261030_IDOB261027073007R3Z",
+      "date": "2026/10/30",
+      "time": "21:00~22:00",
+      "court": "羽毛球4號場",
+      "renterCode": "7836",
+      "extraCode": "6175",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073007R3Z.jpg",
+      "sourceFile": "20261030_IDOB261027073007R3Z.jpg",
+      "renterName": "",
+      "extraName": "家浩"
+    },
+    {
+      "id": "20261030_IDOB261027073007ND6",
+      "date": "2026/10/30",
+      "time": "21:00~22:00",
+      "court": "羽毛球5號場",
+      "renterCode": "9709",
+      "extraCode": "4192",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073007ND6.jpg",
+      "sourceFile": "20261030_IDOB261027073007ND6.jpg",
+      "renterName": "",
+      "extraName": ""
+    },
+    {
+      "id": "20261030_IDOB26102707300986F",
+      "date": "2026/10/30",
+      "time": "21:00~22:00",
+      "court": "羽毛球6號場",
+      "renterCode": "9528",
+      "extraCode": "0813",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB26102707300986F.jpg",
+      "sourceFile": "20261030_IDOB26102707300986F.jpg",
+      "renterName": "",
+      "extraName": "萬子軒"
+    },
+    {
+      "id": "20261030_IDOB261027073011QSQ",
+      "date": "2026/10/30",
+      "time": "21:00~22:00",
+      "court": "羽毛球7號場",
+      "renterCode": "0843",
+      "extraCode": "5142",
+      "codesConfident": true,
+      "image": "uploads/20261030_IDOB261027073011QSQ.jpg",
+      "sourceFile": "20261030_IDOB261027073011QSQ.jpg",
+      "renterName": "Wing",
+      "extraName": "聰"
     }
   ],
   "nameMap": {
@@ -7855,6 +7998,7 @@
     "9170": "濠祥",
     "5142": "聰",
     "8550": "君博",
-    "2140": "石"
+    "2140": "石",
+    "813": "萬子軒"
   }
 }
