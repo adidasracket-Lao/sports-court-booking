@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T08:10:47.881880+08:00",
+  "generatedAt": "2026-11-03T07:53:12.562679+08:00",
   "timezone": "Asia/Macau",
   "records": [
     {
@@ -8246,6 +8246,19 @@
       "sourceFile": "20261105_IDOB2611020730044ZC.jpg",
       "renterName": "",
       "extraName": "Wing"
+    },
+    {
+      "id": "20261106_IDOB261103073006L0S",
+      "date": "2026/11/6",
+      "time": "21:00~22:00",
+      "court": "羽毛球2號場",
+      "renterCode": "9302",
+      "extraCode": "8550",
+      "codesConfident": true,
+      "image": "uploads/20261106_IDOB261103073006L0S.jpg",
+      "sourceFile": "20261106_IDOB261103073006L0S.jpg",
+      "renterName": "梁丞皓",
+      "extraName": "君博"
     }
   ],
   "nameMap": {
